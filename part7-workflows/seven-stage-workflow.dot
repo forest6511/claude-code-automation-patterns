@@ -1,0 +1,21 @@
+digraph seven_stage {
+  rankdir=LR;
+  node [shape=box, style=rounded];
+
+  brainstorm [label="S1: Brainstorm\n要件整理"];
+  worktree   [label="S2: Worktree\n隔離環境"];
+  plan       [label="S3: Plan\n設計・確認"];
+  subagent   [label="S4: Subagent\n並列実装"];
+  tdd        [label="S5: TDD\nテスト駆動"];
+  review     [label="S6: Review\n品質検証"];
+  complete   [label="S7: Complete\nコミット"];
+  reject     [label="再設計"];
+
+  brainstorm -> worktree -> plan;
+  plan -> subagent [label="OK"];
+  plan -> reject   [label="NG"];
+  reject -> plan;
+  subagent -> tdd -> review;
+  review -> complete [label="Pass"];
+  review -> tdd      [label="Fail"];
+}

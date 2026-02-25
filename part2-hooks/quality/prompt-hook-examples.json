@@ -1,0 +1,36 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "以下のセッションデータを確認してください:\n$ARGUMENTS\n\n以下をすべて確認してください:\n1. stop_hook_active が true の場合は必ず ok: true を返す\n2. last_assistant_message にエラーや未完了の旨が含まれる場合は ok: false\n3. 上記以外は ok: true\n\n必ず JSON 形式で返答してください: {\"ok\": true/false, \"reason\": \"理由\"}"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "ユーザーのプロンプトを確認してください:\n$ARGUMENTS\n\n.prompt フィールドに機密情報（APIキー・パスワード・個人情報）が含まれていないか確認してください。含まれている場合は ok: false、含まれていない場合は ok: true を返してください。\n\n{\"ok\": true/false, \"reason\": \"理由\"}"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "prompt",
+            "model": "claude-haiku-4-5-20251001",
+            "prompt": "ファイル編集の結果を確認してください:\n$ARGUMENTS\n\ntool_input.file_path が .ts または .js ファイルの場合のみ、明らかなセキュリティ問題（SQLインジェクション・XSS・ハードコードされた認証情報）がないか確認してください。\n問題がある場合は ok: false と具体的な理由を、問題がない場合や対象外ファイルは ok: true を返してください。\n{\"ok\": true/false, \"reason\": \"理由\"}"
+          }
+        ]
+      }
+    ]
+  }
+}

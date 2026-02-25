@@ -1,0 +1,22 @@
+digraph code_review_workflow {
+  rankdir=LR;
+  node [shape=box];
+
+  start [label="開始", shape=oval];
+  explore [label="コード探索\n(Explore agent)"];
+  spec_check [label="仕様準拠確認\n(spec-compliance-reviewer)"];
+  quality_check [label="品質確認\n(code-quality-reviewer)"];
+  security_check [label="セキュリティ確認\n(security-reviewer)"];
+  fix [label="問題修正"];
+  done [label="完了", shape=oval];
+
+  start -> explore;
+  explore -> spec_check;
+  spec_check -> fix [label="FAIL"];
+  spec_check -> quality_check [label="PASS"];
+  quality_check -> security_check [label="PASS"];
+  quality_check -> fix [label="Critical あり"];
+  security_check -> done [label="PASS"];
+  security_check -> fix [label="Critical あり"];
+  fix -> spec_check;
+}

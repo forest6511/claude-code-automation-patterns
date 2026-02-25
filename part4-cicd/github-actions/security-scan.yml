@@ -1,0 +1,31 @@
+# .github/workflows/security-scan.yml
+name: Security Analysis
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+jobs:
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Claude Code
+        run: npm install -g @anthropic-ai/claude-code
+      - name: Security Analysis
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          REPORT=$(claude --permission-mode plan -p \
+            "src/ ディレクトリを解析し、以下の問題を報告してください:
+             SQLインジェクション, 認証チェックの欠落,
+             シークレット情報のハードコード。
+             各問題はファイル名・行番号・重大度を明記してください。" \
+            --output-format json | jq -r '.result')
+          echo "$REPORT" > security-report.txt
+          cat security-report.txt
+      - name: Upload Security Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: security-report
+          path: security-report.txt
