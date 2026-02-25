@@ -1,12 +1,14 @@
-# .github/workflows/security-scan.yml
+# T37: --permission-mode plan で安全な CI 解析を行う
+# 参照: 現場で使えるClaude Code実践自動化テクニック Part 4
+
 name: Security Analysis
 on:
   push:
-    branches: [main, develop]
+    branches: [main]
   pull_request:
     branches: [main]
 jobs:
-  security:
+  security-scan:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -20,7 +22,8 @@ jobs:
             "src/ ディレクトリを解析し、以下の問題を報告してください:
              SQLインジェクション, 認証チェックの欠落,
              シークレット情報のハードコード。
-             各問題はファイル名・行番号・重大度を明記してください。" \
+             各問題はファイル名・行番号・重大度を明記してください。
+             質問せずレポートのみ出力してください。" \
             --output-format json | jq -r '.result')
           echo "$REPORT" > security-report.txt
           cat security-report.txt

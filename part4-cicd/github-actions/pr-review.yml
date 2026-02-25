@@ -1,4 +1,6 @@
-# .github/workflows/pr-review.yml
+# T34: GitHub Actions で PR 自動レビューを実装する
+# 参照: 現場で使えるClaude Code実践自動化テクニック Part 4
+
 name: AI Code Review
 on:
   pull_request:

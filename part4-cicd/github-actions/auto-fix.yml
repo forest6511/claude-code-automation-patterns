@@ -1,4 +1,6 @@
-# .github/workflows/auto-fix.yml
+# T36: テスト失敗の自動修正パイプライン
+# 参照: 現場で使えるClaude Code実践自動化テクニック Part 4
+
 name: Auto Fix Tests
 on:
   workflow_run:
