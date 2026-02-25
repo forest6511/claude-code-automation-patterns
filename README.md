@@ -23,7 +23,6 @@ claude-code-automation-patterns/
 
 - **タイトル**: 現場で使えるClaude Code実践自動化テクニック
 - **サブタイトル**: Hooks・Skills・エージェント・CI/CDで開発を加速する65の実践パターン
-- **Amazon**: https://www.amazon.co.jp/
 
 ## ライセンス
 
