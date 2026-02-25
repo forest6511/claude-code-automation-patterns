@@ -1,6 +1,6 @@
 # Claude Code 実践自動化テクニック — サンプルコード集
 
-書籍「**現場で使えるClaude Code実践自動化テクニック**」（著: 森川 陽介）の公式サンプルリポジトリです。
+書籍「**現場で使えるClaude Code実践自動化テクニック**」の公式サンプルリポジトリです。
 
 ## 概要
 
@@ -23,7 +23,6 @@ claude-code-automation-patterns/
 
 - **タイトル**: 現場で使えるClaude Code実践自動化テクニック
 - **サブタイトル**: Hooks・Skills・エージェント・CI/CDで開発を加速する65の実践パターン
-- **著者**: 森川 陽介
 - **Amazon**: https://www.amazon.co.jp/
 
 ## ライセンス
