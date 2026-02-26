@@ -19,16 +19,16 @@ if [ -d "$DEST" ]; then
   exit 1
 fi
 
-TMPDIR=$(mktemp -d)
-trap "rm -rf $TMPDIR" EXIT
+TMP_CLONE_DIR=$(mktemp -d)
+trap "rm -rf $TMP_CLONE_DIR" EXIT
 
-git clone --quiet --depth=1 "$REPO_URL" "$TMPDIR/repo"
+git clone --quiet --depth=1 "$REPO_URL" "$TMP_CLONE_DIR/repo"
 
-if [ ! -d "$TMPDIR/repo/skills/$SKILL_NAME" ]; then
+if [ ! -d "$TMP_CLONE_DIR/repo/skills/$SKILL_NAME" ]; then
   echo "ERROR: スキル '$SKILL_NAME' が見つかりません" >&2
   exit 1
 fi
 
 mkdir -p "$(dirname "$DEST")"
-cp -r "$TMPDIR/repo/skills/$SKILL_NAME" "$DEST"
+cp -r "$TMP_CLONE_DIR/repo/skills/$SKILL_NAME" "$DEST"
 echo "インストール完了: $DEST"

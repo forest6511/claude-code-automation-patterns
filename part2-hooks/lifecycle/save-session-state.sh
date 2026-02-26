@@ -1,7 +1,7 @@
 #!/bin/bash
 # save-session-state.sh
 INPUT=$(cat)
-TRIGGER=$(echo "$INPUT" | jq -r '.trigger')
+TRIGGER=$(echo "$INPUT" | jq -r '.trigger // "n/a"')
 DATE=$(date '+%Y-%m-%d %H:%M')
 STATE_FILE=".claude/session-state.md"
 
