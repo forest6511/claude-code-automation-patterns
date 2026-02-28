@@ -22,6 +22,7 @@
 
 - **タイトル**: 現場で使えるClaude Code実践自動化テクニック
 - **サブタイトル**: Hooks・Skills・エージェント・CI/CDで開発を加速する65の実践パターン
+- **Amazon**: [Kindleストアで購入](https://www.amazon.co.jp/dp/B0GHLHXN2Y)
 
 ## ライセンス
 
